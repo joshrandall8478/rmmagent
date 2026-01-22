@@ -103,10 +103,10 @@ var (
 	etcConfig       = "/etc/tacticalagent"
 	nixAgentDir     = "/opt/tacticalagent"
 	nixMeshDir      = "/opt/tacticalmesh"
-	nixAgentBin     = "/opt/tacticalagent/tacticalagent"
-	nixAgentBinDir  = "/opt/tacticalagent/bin"
-	nixAgentEtcDir  = "/opt/tacticalagent/etc"
-	nixMeshAgentBin = "/opt/tacticalmesh/meshagent"
+	nixAgentBin     =  nixAgentDir + "/tacticalagent"
+	nixAgentEtcDir  = nixAgentDir + "/etc"
+	nixAgentBinDir  = nixAgentDir + "/bin"
+	nixMeshAgentBin = nixMeshDir + "/meshagent"
 )
 
 // SetPaths updates the unix paths if custom values are provided via flags
