@@ -98,7 +98,7 @@ const (
 	defaultMacMeshSvcDir = "/usr/local/mesh_services"
 )
 
-// Path variables - can be overridden via flags
+
 var (
 	etcConfig       = "/etc/tacticalagent"
 	nixAgentDir     = "/opt/tacticalagent"
@@ -109,7 +109,7 @@ var (
 	nixMeshAgentBin = nixMeshDir + "/meshagent"
 )
 
-// SetPaths updates the unix paths if custom values are provided via flags
+
 func SetPaths(etcCfg, agentDir, meshDir string) {
 	if etcCfg != "" {
 		etcConfig = etcCfg
@@ -127,7 +127,6 @@ func SetPaths(etcCfg, agentDir, meshDir string) {
 }
 
 var defaultWinTmpDir = filepath.Join(os.Getenv("PROGRAMDATA"), "TacticalRMM")
-var winMeshDir = filepath.Join(os.Getenv("PROGRAMFILES"), "Mesh Agent")
 var natsCheckin = []string{"agent-hello", "agent-agentinfo", "agent-disks", "agent-winsvc", "agent-publicip", "agent-wmi"}
 var limitNatsData = []string{"agent-winsvc", "agent-wmi"}
 
