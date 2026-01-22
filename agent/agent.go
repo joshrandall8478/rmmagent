@@ -88,7 +88,7 @@ type Agent struct {
 	Insecure           bool
 }
 
-const (
+var (
 	progFilesName        = "TacticalAgent"
 	winExeName           = "tacticalrmm.exe"
 	winSvcName           = "tacticalrmm"
@@ -96,19 +96,15 @@ const (
 	macPlistPath         = "/Library/LaunchDaemons/tacticalagent.plist"
 	macPlistName         = "tacticalagent"
 	defaultMacMeshSvcDir = "/usr/local/mesh_services"
+	installPrefix        = "/"
+	etcConfig            = installPrefix + "etc/tacticalagent"
+	nixAgentDir          = installPrefix + "opt/tacticalagent"
+	nixMeshDir           = installPrefix + "opt/tacticalmesh"
+	nixAgentBin          = nixAgentDir + "/tacticalagent"
+	nixAgentEtcDir       = nixAgentDir + "/etc"
+	nixAgentBinDir       = nixAgentDir + "/bin"
+	nixMeshAgentBin      = nixMeshDir + "/meshagent"
 )
-
-
-var (
-	etcConfig       = "/etc/tacticalagent"
-	nixAgentDir     = "/opt/tacticalagent"
-	nixMeshDir      = "/opt/tacticalmesh"
-	nixAgentBin     =  nixAgentDir + "/tacticalagent"
-	nixAgentEtcDir  = nixAgentDir + "/etc"
-	nixAgentBinDir  = nixAgentDir + "/bin"
-	nixMeshAgentBin = nixMeshDir + "/meshagent"
-)
-
 
 func SetPaths(etcCfg, agentDir, meshDir string) {
 	if etcCfg != "" {
