@@ -56,6 +56,11 @@ func main() {
 	proxy := flag.String("proxy", "", "Use a http proxy")
 	insecure := flag.Bool("insecure", false, "Insecure for testing only")
 	natsport := flag.String("natsport", "", "nats standard port")
+	etcConfig := flag.String("etc-config", "/etc/tacticalagent", "Path to etc config directory")
+	nixAgentDir := flag.String("nix-agent-dir", "/opt/tacticalagent", "Path to agent directory (unix)")
+	nixMeshDir := flag.String("nix-mesh-dir", "/opt/tacticalmesh", "Path to mesh directory (unix)")
+	
+
 	flag.Parse()
 
 	if *ver {
@@ -168,6 +173,9 @@ func main() {
 			Insecure:         *insecure,
 			NatsStandardPort: *natsport,
 			TmpDir:           *tmpDir,
+			EtcConfig:        *etcConfig,
+			NixAgentDir:      *nixAgentDir,
+			NixMeshDir:       *nixMeshDir,
 		})
 	default:
 		agent.ShowStatus(version)

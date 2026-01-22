@@ -93,17 +93,38 @@ const (
 	winExeName           = "tacticalrmm.exe"
 	winSvcName           = "tacticalrmm"
 	meshSvcName          = "mesh agent"
-	etcConfig            = "/mnt/data/system/etc/tacticalagent"
-	nixAgentDir          = "/mnt/data/system/opt/tacticalagent"
-	nixMeshDir           = "/mnt/data/system/opt/tacticalmesh"
-	nixAgentBin          = nixAgentDir + "/tacticalagent"
-	nixAgentBinDir       = nixAgentDir + "/bin"
-	nixAgentEtcDir       = nixAgentDir + "/etc"
-	nixMeshAgentBin      = nixMeshDir + "/meshagent"
 	macPlistPath         = "/Library/LaunchDaemons/tacticalagent.plist"
 	macPlistName         = "tacticalagent"
 	defaultMacMeshSvcDir = "/usr/local/mesh_services"
 )
+
+// Path variables - can be overridden via flags
+var (
+	etcConfig       = "/etc/tacticalagent"
+	nixAgentDir     = "/opt/tacticalagent"
+	nixMeshDir      = "/opt/tacticalmesh"
+	nixAgentBin     = "/opt/tacticalagent/tacticalagent"
+	nixAgentBinDir  = "/opt/tacticalagent/bin"
+	nixAgentEtcDir  = "/opt/tacticalagent/etc"
+	nixMeshAgentBin = "/opt/tacticalmesh/meshagent"
+)
+
+// SetPaths updates the unix paths if custom values are provided via flags
+func SetPaths(etcCfg, agentDir, meshDir string) {
+	if etcCfg != "" {
+		etcConfig = etcCfg
+	}
+	if agentDir != "" {
+		nixAgentDir = agentDir
+		nixAgentBin = agentDir + "/tacticalagent"
+		nixAgentBinDir = agentDir + "/bin"
+		nixAgentEtcDir = agentDir + "/etc"
+	}
+	if meshDir != "" {
+		nixMeshDir = meshDir
+		nixMeshAgentBin = meshDir + "/meshagent"
+	}
+}
 
 var defaultWinTmpDir = filepath.Join(os.Getenv("PROGRAMDATA"), "TacticalRMM")
 var winMeshDir = filepath.Join(os.Getenv("PROGRAMFILES"), "Mesh Agent")

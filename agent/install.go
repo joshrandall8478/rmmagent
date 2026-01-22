@@ -51,9 +51,15 @@ type Installer struct {
 	Insecure         bool
 	NatsStandardPort string
 	TmpDir           string
+	EtcConfig        string
+	NixAgentDir      string
+	NixMeshDir       string
 }
 
 func (a *Agent) Install(i *Installer) {
+	// Set custom paths if provided via flags
+	SetPaths(i.EtcConfig, i.NixAgentDir, i.NixMeshDir)
+
 	a.checkExistingAndRemove(i.Silent)
 
 	i.Headers = map[string]string{
